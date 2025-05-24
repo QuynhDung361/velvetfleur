@@ -12,11 +12,25 @@ const notificationSocket = require('./socket/notificationSocket')
 const chatSocket = require('./socket/chatSocket')
 const { swaggerSpec, swaggerUi } = require('./utiles/swagger')
 
+// app.use(cors({
+//     origin : ['http://localhost:3000','http://localhost:3001',
+//     'https://velvetfleur-1po9.vercel.app'],
+//     credentials: true
+// }))
+const allowedOrigins = process.env.CLIENT_URL.split(',');
+
 app.use(cors({
-    origin : ['http://localhost:3000','http://localhost:3001',
-    'https://velvetfleur-1po9.vercel.app'],
-    credentials: true
-}))
+  origin: function (origin, callback) {
+    // Cho phép cả các request không có origin (như Postman) hoặc nằm trong danh sách
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS: ' + origin));
+    }
+  },
+  credentials: true
+}));
+
 
 require('dotenv').config()
 app.use(morgan('dev'));
