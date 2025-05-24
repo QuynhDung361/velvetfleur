@@ -6,7 +6,8 @@ export const add_to_card = createAsyncThunk(
     'card/add_to_card',
     async(info, { rejectWithValue,fulfillWithValue }) => {
         try {
-            const {data} = await axios.post('http://localhost:5000/api/customer/add-to-cart',info) 
+          //  const {data} = await axios.post('http://localhost:5000/api/customer/add-to-cart',info) 
+            const { data } = await api.post('/customer/add-to-cart', info)
             console.log(data)
             return fulfillWithValue(data)
         } catch (error) {
@@ -97,7 +98,8 @@ export const add_to_wishlist = createAsyncThunk(
     'wishlist/add_to_wishlist',
     async(info, { rejectWithValue,fulfillWithValue }) => {
         try {
-            const {data} = await axios.post('http://localhost:5000/api/customer/wishlist',info) 
+           // const {data} = await axios.post('http://localhost:5000/api/customer/wishlist',info) 
+            const { data } = await api.post('/customer/wishlist',info)
             return fulfillWithValue(data)
         } catch (error) {
             return rejectWithValue(error.response.data)
@@ -110,7 +112,9 @@ export const get_wishlist_products = createAsyncThunk(
     'wishlist/get_wishlist_products',
     async(userId, { rejectWithValue,fulfillWithValue }) => {
         try {
-            const {data} = await axios.get(`http://localhost:5000/api/customer/wishlist/${userId}`) 
+          //  const {data} = await axios.get(`http://localhost:5000/api/customer/wishlist/${userId}`) 
+            const { data } = await api.get(`/customer/wishlist/${userId}`);
+
             console.log('s',data.data.user.products)
             return fulfillWithValue(data.data.user.products)
         } catch (error) {
