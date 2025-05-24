@@ -77,8 +77,10 @@ export const product_details = createAsyncThunk(
     'product/product_details',
     async(id, { fulfillWithValue }) => {
         try {
-            const res = await axios.get(`http://localhost:5000/api/customer/product/${id}`)
-             console.log('haha', res.data.data)
+        //    const res = await axios.get(`http://localhost:5000/api/customer/product/${id}`)
+const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/customer/product/${id}`)
+
+            console.log('haha', res.data.data)
             return fulfillWithValue(res.data.data)
         } catch (error) {
             console.log(error.respone)
