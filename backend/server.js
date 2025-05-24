@@ -13,7 +13,8 @@ const chatSocket = require('./socket/chatSocket')
 const { swaggerSpec, swaggerUi } = require('./utiles/swagger')
 
 app.use(cors({
-    origin : ['http://localhost:3000','http://localhost:3001'],
+    origin : ['http://localhost:3000','http://localhost:3001',
+    'https://velvetfleur-1po9.vercel.app'],
     credentials: true
 }))
 
