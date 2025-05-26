@@ -729,7 +729,11 @@ const Details = () => {
                                 ) : (
                                     <>
                                         <span className='text-gray-500'>Price:</span>
-                                        <h2 className='text-pink-500'>${product.price}</h2>
+{/*                                         <h2 className='text-pink-500'>${product.price}</h2> */}
+                                     <h2 className="text-pink-500">
+  {product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}
+</h2>
+
                                     </>
                                 )}
                             </div> 
